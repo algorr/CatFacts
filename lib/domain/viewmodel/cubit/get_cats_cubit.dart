@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:catfacts/data/network/failure.dart';
 import 'package:catfacts/domain/repository/repository.dart';
 import 'package:equatable/equatable.dart';
-
 import '../../model/cats.dart';
 
 part 'get_cats_state.dart';
