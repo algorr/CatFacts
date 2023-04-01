@@ -11,15 +11,16 @@ class GetCatsInitial extends GetCatsState {}
 
 class GetCatsSuccessfully extends GetCatsState {
   final List<Cats> cats;
+  final Image newImage;
 
-  const GetCatsSuccessfully(this.cats);
+  const GetCatsSuccessfully(this.cats, this.newImage);
 
   @override
   List<Object> get props => [cats];
 }
 
 class GetCatsFail extends GetCatsState {
-  final Failure failure;
+  // final Failure failure;
 
-  const GetCatsFail(this.failure);
+  //const GetCatsFail(this.failure);
 }

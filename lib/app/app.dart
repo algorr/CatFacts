@@ -4,7 +4,6 @@ import 'package:catfacts/domain/viewmodel/cubit/get_cats_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../data/network/app_api.dart';
 import '../presentation/resources/route_manager.dart';
 import '../presentation/resources/theme_manager.dart';
