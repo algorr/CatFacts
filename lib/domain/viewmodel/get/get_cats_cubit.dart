@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:bloc/bloc.dart';
 import 'package:catfacts/app/constants.dart';
 import 'package:catfacts/domain/repository/repository.dart';
@@ -15,14 +14,13 @@ class GetCatsCubit extends Cubit<GetCatsState> with RandomCatFact {
   final Repository _repository;
   GetCatsCubit(this._repository) : super(GetCatsInitial());
 
-  //* loading animation variable
-  //bool isLoading = false;
-
   //* Fetch Cat Facts from API
   void fetchCats() async {
     try {
       //* get cat list from api
       final catFacts = await _repository.fetchCats();
+
+      //* refresh to new image
       Uint8List bytes =
           (await NetworkAssetBundle(Uri.parse(Constants.randomImageUrl))
                   .load(Constants.randomImageUrl))
@@ -47,9 +45,4 @@ class GetCatsCubit extends Cubit<GetCatsState> with RandomCatFact {
   void refreshCatFacts() {
     emit(GetCatsInitial());
   }
-
-  //* toggle func isLoading variable
-  /*  void toggleLoading() {
-    isLoading = !isLoading;
-  } */
 }
