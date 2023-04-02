@@ -24,3 +24,13 @@ class GetCatsFail extends GetCatsState {
 
   //const GetCatsFail(this.failure);
 }
+
+class GetCatsLocally extends GetCatsState {
+  final List<Cats> cats;
+  final int id;
+
+  const GetCatsLocally(this.cats, this.id);
+
+  @override
+  List<Object> get props => [cats, id];
+}

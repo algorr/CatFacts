@@ -1,6 +1,5 @@
 import 'package:catfacts/app/constants.dart';
 import 'package:catfacts/domain/model/cats.dart';
-import 'package:catfacts/domain/viewmodel/cubit/get_cats_cubit.dart';
 import 'package:catfacts/presentation/resources/route_manager.dart';
 import 'package:catfacts/presentation/widgets/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
@@ -23,44 +22,47 @@ class HistoryView extends StatelessWidget {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          //getLocalFacts();
-          return ValueListenableBuilder(
-              valueListenable: Hive.box(Constants.hiveBox).listenable(),
-              builder: (context, box, widget) {
-                return SingleChildScrollView(
-                  child: Column(
+          final box = Hive.box(Constants.hiveBox);
+
+          print('History view : ${box.values}');
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 500,
+                  width: 500,
+                  child: ListView(
                     children: [
-                      for (List cats in box.values)
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width,
-                          child: ListView.builder(
-                              itemCount: cats.length,
-                              itemBuilder: (context, index) {
-                                print('Listenin uzunluğu : ${cats.length}');
-                                return Card(
-                                  child: ListTile(
-                                    title: Text(cats[index].text!),
-                                    subtitle: Text(cats[index].createdAt!),
-                                  ),
-                                );
-                              }),
-                        ),
+                      ...box.values.map((e) => ListTile(
+                            title: Text(e.text),
+                            subtitle: Text(e.createdAt),
+                          ))
                     ],
                   ),
-                );
-              });
+                )
+                /*    SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView.builder(itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(cats[index].text!),
+                    );
+                  }),
+                ), */
+              ],
+            ),
+          );
         },
       ),
     );
   }
 }
 
-Future<void> getLocalFacts() async {
+/* Future<void> getLocalFacts() async {
   final hiveBox = Hive.box(Constants.hiveBox);
   final data = hiveBox.keys.map((e) {
     final item = hiveBox.get(e);
     print(item['text']);
-    //return {"e": e, "fact": item["text"], "createdAt": item['createdAt']};
+    return {"e": e, "fact": item["text"], "createdAt": item['createdAt']};
   }).toList();
-}
+} */

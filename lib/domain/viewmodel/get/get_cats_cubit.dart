@@ -14,7 +14,7 @@ class GetCatsCubit extends Cubit<GetCatsState> with RandomCatFact {
   GetCatsCubit(this._repository) : super(GetCatsInitial());
 
   bool isLoading = false;
-  late Box factsBox;
+  //late Box factsBox;
 
   //* Fetch Cat Facts from API
   void fetchCats() async {
@@ -25,9 +25,9 @@ class GetCatsCubit extends Cubit<GetCatsState> with RandomCatFact {
       final nextImage = Image.network(Constants.randomImageUrl);
       if (catFacts.isNotEmpty) {
         emit(GetCatsSuccessfully(catFacts, nextImage));
-        saveLocal(catFacts);
-        print(factsBox.values);
-        print('state tarafında uzunluk : ${factsBox.length}');
+        //saveLocal(catFacts);
+        /*  print(factsBox.values);
+        print('state tarafında uzunluk : ${factsBox.length}'); */
 
         toggleLoading();
       } else {
@@ -38,10 +38,10 @@ class GetCatsCubit extends Cubit<GetCatsState> with RandomCatFact {
     }
   }
 
-  Future<void> saveLocal(List<Cats> cats) async {
+/*   Future<void> saveLocal(List<Cats> cats) async {
     factsBox = Hive.box(Constants.hiveBox);
     await factsBox.add(cats);
-  }
+  } */
 
   void toggleLoading() {
     isLoading = !isLoading;

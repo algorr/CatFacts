@@ -1,5 +1,5 @@
 import 'package:catfacts/domain/repository/repository.dart';
-import 'package:catfacts/domain/viewmodel/cubit/get_cats_cubit.dart';
+import 'package:catfacts/domain/viewmodel/get/get_cats_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

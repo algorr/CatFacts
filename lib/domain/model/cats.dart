@@ -11,10 +11,7 @@ class Cats {
   @HiveField(1)
   String? createdAt;
 
-  Cats({
-    this.text,
-    this.createdAt,
-  });
+  Cats({this.text, this.createdAt});
 
   factory Cats.fromJson(Map<String, dynamic> json) => _$CatsFromJson(json);
 

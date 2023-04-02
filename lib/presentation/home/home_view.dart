@@ -1,4 +1,6 @@
-import 'package:catfacts/domain/viewmodel/cubit/get_cats_cubit.dart';
+import 'package:catfacts/app/constants.dart';
+import 'package:catfacts/domain/model/cats.dart';
+import 'package:catfacts/domain/viewmodel/get/get_cats_cubit.dart';
 import 'package:catfacts/presentation/resources/icon_manager.dart';
 import 'package:catfacts/presentation/resources/route_manager.dart';
 import 'package:catfacts/presentation/resources/value_manager.dart';
@@ -8,6 +10,7 @@ import 'package:catfacts/utils/mixins/random_cat_fact.dart';
 import 'package:catfacts/utils/mixins/time_to_local.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../resources/string_manager.dart';
 
 class HomeView extends StatelessWidget with TimeToLocal, RandomCatFact {
@@ -33,6 +36,8 @@ class HomeView extends StatelessWidget with TimeToLocal, RandomCatFact {
         builder: (context, state) {
           if (state is GetCatsSuccessfully) {
             var randomCat = randomFact(state.cats);
+            _saveRandomFacts(randomCat);
+
             return Column(
               children: [
                 SizedBox(
@@ -73,4 +78,11 @@ class HomeView extends StatelessWidget with TimeToLocal, RandomCatFact {
       ),
     );
   }
+}
+
+_saveRandomFacts(Cats randomCat) async {
+  final _box = Hive.box(Constants.hiveBox);
+  await _box.add(randomCat);
+  print(_box.values);
+  print('state tarafında uzunluk : ${_box.length}');
 }
