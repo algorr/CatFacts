@@ -1,10 +1,8 @@
-import 'package:catfacts/domain/repository/repository.dart';
+import 'package:catfacts/domain/locator/locator.dart';
 import 'package:catfacts/domain/viewmodel/get/get_cats_cubit.dart';
-import 'package:dio/dio.dart';
+import 'package:catfacts/presentation/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../data/network/app_api.dart';
-import '../presentation/resources/route_manager.dart';
 import '../presentation/resources/theme_manager.dart';
 
 class MyApp extends StatefulWidget {
@@ -24,12 +22,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetCatsCubit(Repository(AppServiceClient(Dio()))),
+    return BlocProvider<GetCatsCubit>(
+      create: (context) => getIt.call(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: RouteManager.getRoute,
-        initialRoute: Routes.homeRoute,
+        /*  onGenerateRoute: RouteManager.getRoute,
+        initialRoute: Routes.homeRoute, */
+        home: const HomeView(),
         theme: getAppTheme(),
       ),
     );

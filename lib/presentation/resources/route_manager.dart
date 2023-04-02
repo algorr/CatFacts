@@ -16,7 +16,7 @@ class RouteManager {
       case Routes.historyRoute:
         return MaterialPageRoute(builder: (_) => const HistoryView());
       default:
-        return unDefinedRoute();
+        return MaterialPageRoute(builder: (_) => const HomeView());
     }
   }
 
