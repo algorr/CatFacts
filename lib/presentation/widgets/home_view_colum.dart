@@ -31,7 +31,11 @@ class HomeViewColumn extends StatelessWidget {
         CustomCard(
           edgeInsets: const EdgeInsets.symmetric(horizontal: AppMargin.m16),
           widget: ListTile(
-            title: Text(randomCat.text!),
+            contentPadding: const EdgeInsets.all(AppMargin.m10),
+            title: Text(
+              randomCat.text!,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
             subtitle: Text(randomCat.createdAt!),
           ),
         )

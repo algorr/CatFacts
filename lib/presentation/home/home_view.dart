@@ -21,7 +21,6 @@ class HomeView extends StatelessWidget with TimeToLocal, RandomCatFact {
         actions: [
           IconButton(
               onPressed: () {
-                //Navigator.pushReplacementNamed(context, Routes.historyRoute);
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const HistoryView()));
               },
@@ -60,8 +59,7 @@ class HomeView extends StatelessWidget with TimeToLocal, RandomCatFact {
       padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
       child: ElevatedButton(
         onPressed: () {
-          //context.read<GetCatsCubit>().fetchCats();
-          BlocProvider.of<GetCatsCubit>(context).fetchCats();
+          BlocProvider.of<GetCatsCubit>(context).refreshCatFacts();
         },
         child: const Text(AppStrings.anotherFact),
       ),
