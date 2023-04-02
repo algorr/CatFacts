@@ -1,5 +1,6 @@
 import 'package:catfacts/domain/viewmodel/cubit/get_cats_cubit.dart';
 import 'package:catfacts/presentation/resources/icon_manager.dart';
+import 'package:catfacts/presentation/resources/route_manager.dart';
 import 'package:catfacts/presentation/resources/value_manager.dart';
 import 'package:catfacts/presentation/widgets/custom_card.dart';
 import 'package:catfacts/presentation/widgets/shimmer.dart';
@@ -21,14 +22,17 @@ class HomeView extends StatelessWidget with TimeToLocal, RandomCatFact {
         title: const Text(AppStrings.appBarTitle),
         actions: [
           IconButton(
-              onPressed: () {}, icon: const Icon(IconManager.historyButton))
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, Routes.historyRoute);
+              },
+              icon: const Icon(IconManager.historyButton))
         ],
       ),
       bottomNavigationBar: _bottomAppBar(context),
       body: BlocBuilder<GetCatsCubit, GetCatsState>(
         builder: (context, state) {
           if (state is GetCatsSuccessfully) {
-            var randomCatFact = randomFact(state.cats);
+            var randomCat = randomFact(state.cats);
             return Column(
               children: [
                 SizedBox(
@@ -45,8 +49,8 @@ class HomeView extends StatelessWidget with TimeToLocal, RandomCatFact {
                   edgeInsets:
                       const EdgeInsets.symmetric(horizontal: AppMargin.m16),
                   widget: ListTile(
-                    title: Text(randomCatFact.text!),
-                    subtitle: Text(randomCatFact.createdAt!),
+                    title: Text(randomCat.text!),
+                    subtitle: Text(randomCat.createdAt!),
                   ),
                 )
               ],

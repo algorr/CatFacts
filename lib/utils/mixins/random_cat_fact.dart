@@ -8,3 +8,17 @@ mixin RandomCatFact {
     return element;
   }
 }
+
+mixin CatToFact {
+  String? catToFact(Cats cats) {
+    var element = cats.text;
+    return element;
+  }
+}
+
+mixin CatToCreatedAt {
+  String? catToFact(Cats cats) {
+    var element = cats.createdAt;
+    return element;
+  }
+}

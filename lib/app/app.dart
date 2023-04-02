@@ -1,4 +1,3 @@
-import 'package:catfacts/app/constants.dart';
 import 'package:catfacts/domain/repository/repository.dart';
 import 'package:catfacts/domain/viewmodel/cubit/get_cats_cubit.dart';
 import 'package:dio/dio.dart';

@@ -1,30 +1,20 @@
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'cats.g.dart';
 
+@HiveType(typeId: 0)
 @JsonSerializable()
 class Cats {
-  String? sId;
-  String? user;
+  @HiveField(0)
   String? text;
-  int? iV;
-  String? source;
-  String? updatedAt;
-  String? type;
-  String? createdAt;
-  bool? deleted;
-  bool? used;
 
-  Cats(
-      {this.sId,
-      this.user,
-      this.text,
-      this.iV,
-      this.source,
-      this.updatedAt,
-      this.type,
-      this.createdAt,
-      this.deleted,
-      this.used});
+  @HiveField(1)
+  String? createdAt;
+
+  Cats({
+    this.text,
+    this.createdAt,
+  });
 
   factory Cats.fromJson(Map<String, dynamic> json) => _$CatsFromJson(json);
 

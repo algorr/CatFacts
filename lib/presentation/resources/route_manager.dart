@@ -1,36 +1,20 @@
+import 'package:catfacts/presentation/history/history_view.dart';
 import 'package:catfacts/presentation/home/home_view.dart';
 import 'package:flutter/material.dart';
-
-import '../splash/splash_view.dart';
 import 'string_manager.dart';
 
 class Routes {
-  static const String splashRoute = '/';
-  static const String onBoardingRoute = '/onBoarding';
   static const String homeRoute = '/home';
-  static const String registerRoute = '/register';
-  static const String forgotPasswordRoute = '/forgotPassword';
-  static const String mainRoute = '/main';
-  static const String storeDetailRoute = '/storeDetail';
+  static const String historyRoute = '/history';
 }
 
 class RouteManager {
   static Route<dynamic> getRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case Routes.splashRoute:
-        return MaterialPageRoute(builder: (_) => const SplashView());
-      /*  case Routes.onBoardingRoute:
-        return MaterialPageRoute(builder: (_) => const OnBoardingView()); */
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeView());
-      /*  case Routes.registerRoute:
-        return MaterialPageRoute(builder: (_) => const RegisterView());
-      case Routes.forgotPasswordRoute:
-        return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
-      case Routes.mainRoute:
-        return MaterialPageRoute(builder: (_) => const MainView());
-      case Routes.storeDetailRoute:
-        return MaterialPageRoute(builder: (_) => const StoreDetailView()); */
+      case Routes.historyRoute:
+        return MaterialPageRoute(builder: (_) => const HistoryView());
       default:
         return unDefinedRoute();
     }
@@ -38,13 +22,14 @@ class RouteManager {
 
   static Route<dynamic> unDefinedRoute() {
     return MaterialPageRoute(
-        builder: (_) => Scaffold(
-              appBar: AppBar(
-                title: const Text(AppStrings.noRouteFound),
-              ),
-              body: const Center(
-                child: Text(AppStrings.oppsss),
-              ),
-            ));
+      builder: (_) => Scaffold(
+        appBar: AppBar(
+          title: const Text(AppStrings.noRouteFound),
+        ),
+        body: const Center(
+          child: Text(AppStrings.oppsss),
+        ),
+      ),
+    );
   }
 }
