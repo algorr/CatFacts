@@ -26,8 +26,6 @@ class _MyAppState extends State<MyApp> {
       create: (context) => getIt.call(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        /*  onGenerateRoute: RouteManager.getRoute,
-        initialRoute: Routes.homeRoute, */
         home: const HomeView(),
         theme: getAppTheme(),
       ),
